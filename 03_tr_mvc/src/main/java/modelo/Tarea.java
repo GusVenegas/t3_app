@@ -4,25 +4,32 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tarea implements Serializable{
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
+public class Tarea implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer codigo;
 	private String nombre;
-	private String responsable;
+	private Persona responsable;
 	private String estado;
-	
+
 	private static List<Tarea> tareas = null;
-	
-	public Tarea() {}
+
+	public Tarea() {
+	}
 
 	public Tarea(Integer codigo, String nombre) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
-		this.responsable = "";
+		this.responsable = null;
 		this.estado = "Por asignar";
+	}
+
+	public void setResponsable(Persona responsable) {
+		this.responsable = responsable;
 	}
 
 	public Integer getCodigo() {
@@ -41,12 +48,8 @@ public class Tarea implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getResponsable() {
+	public Persona getResponsable() {
 		return responsable;
-	}
-
-	public void setResponsable(String responsable) {
-		this.responsable = responsable;
 	}
 
 	public String getEstado() {
@@ -57,35 +60,55 @@ public class Tarea implements Serializable{
 		this.estado = estado;
 	}
 
-	//REGLAS DEL NEGOCIO
-	public void asignarResponsable(String nombre) {
-		Persona p = new Persona();
-		List<Persona> listaPersonas = p.getPersonas();
-
-		for (int i = 0; i <= listaPersonas.size(); i++) {
-			if (listaPersonas.get(i).getNombre() == nombre) {
-				this.responsable = nombre;
-				this.estado = "Por Hacer";
-				break;
+	// REGLAS DEL NEGOCIO
+	public void asignarResponsable(Persona persona, int idTarea) {
+		for (Tarea tarea : this.getTareas()) {
+			if(tarea.getCodigo() == idTarea){
+				tarea.setResponsable(persona);
+				tarea.setEstado("POR HACER");
 			}
 		}
 	}
-	
+
 	public void crearTarea(Tarea t) {
 		this.getTareas().add(t);
 	}
-	
+
 	public void completarTarea() {
 		this.estado = "Completado";
 	}
-	
-	public List<Tarea> getTareas(){
-		if(tareas == null) {
+
+	public List<Tarea> getTareas() {
+		if (tareas == null) {
 			tareas = new ArrayList<>();
 			tareas.add(new Tarea(1, "Hacer rol de pago"));
-		}		
+		}
 		return tareas;
 	}
-	
+
+	public List<Tarea> getTareasByPersona(Persona persona) {
+		List<Tarea> personalizada = new ArrayList<>();
+		for (Tarea tarea : this.getTareas()) {
+			if(tarea.getResponsable() != null) {
+				if (tarea.getResponsable().getId() == persona.getId()) {
+					personalizada.add(tarea);
+				}
+			}			
+		}
+		return personalizada;
+	}
+
+	public Tarea getTareaById(Integer idTarea) {
+		Tarea tareaEspecifica = null;	
+		for (Tarea tarea : this.getTareas()) {
+			
+				if (tarea.getCodigo() == idTarea) {
+					return tarea;
+				}
+						
+		}
+		return tareaEspecifica;
+		
+	}
 
 }

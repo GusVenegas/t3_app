@@ -26,11 +26,7 @@ public class TareaController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.- Obtener datos que me envían de la solicitud
-		HttpSession session = request.getSession();
-		Persona persona = (Persona)session.getAttribute("usuarioLogeado");
-		request.setAttribute("nombre", persona.getNombre());
-		
+		//1.- Obtener datos que me envían de la solicitud		
 		//2.- Llamar al modelo para obtener los datos
 		Tarea modeloTarea = new Tarea();
 		List<Tarea> listaTareas = modeloTarea.getTareas();

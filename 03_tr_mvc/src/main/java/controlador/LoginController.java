@@ -43,9 +43,13 @@ public class LoginController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("usuarioLogeado", personaAutenticada);
 			//3.- Llamo a la vista
-			
+				if(personaAutenticada.isEsDirector()) {
+					response.sendRedirect("TareaController");
+				}else {
+					response.sendRedirect("OperadorController");
+				}
 			//request.getRequestDispatcher("TareaController").forward(request, response);
-				response.sendRedirect("TareaController");
+				
 		}else {
 			//3.- Llamo a la vista
 			String mensaje = "Ingresaste mal tu usuario y clave";
