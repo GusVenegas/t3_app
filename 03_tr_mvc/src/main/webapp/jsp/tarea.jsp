@@ -17,7 +17,7 @@
 		<div class="container-fluid">
 			<span class="navbar-brand mb-0 h1">Gestor Tareas</span>
 			<span class="navbar-brand mb-0 h3">Usuario logeado: ${sessionScope.usuarioLogeado.nombre}</span>
-			<span class="navbar-brand mb-0 h3"><a class="text-decoration-none text-white" href="login.html">Salir</a></span>
+			<span class="navbar-brand mb-0 h3"><a class="text-decoration-none text-white" href="SalirController">Salir</a></span>
 		</div>
 	</nav>
 	

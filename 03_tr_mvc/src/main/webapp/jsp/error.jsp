@@ -24,7 +24,7 @@
 		<h1 class="fs-1 text-secondary">Algo fue mal!!</h1>
 		<p class="fs-4 text-danger"><c:out value="${mensaje}"/><p>
 		
-		<a href="login.html">Regresar al Menu principal</a>
+		<a href="SalirController">Regresar al Menu principal</a>
 	</div>
 	
 </body>
