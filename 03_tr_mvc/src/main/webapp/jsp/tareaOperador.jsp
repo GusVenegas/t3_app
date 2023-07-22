@@ -23,7 +23,7 @@
 	
 	<h1>Listado de Tareas</h1>
 
-	<div><a href="CrearTareaController">Nuevo</a></div>
+	
 	
 	
     
@@ -45,8 +45,8 @@
 				<td scope="row">${tarea.codigo}</td>
 				<td>${tarea.nombre}</td>
 				<td>${tarea.responsable.nombre}</td>
-				<td>${tarea.estado}</td>
-				<td><a href="actualizarPersona.html">Cambiar Estado</a>
+				<td>${tarea.estadoTarea.texto}</td>
+				<td><a href="CambiarEstadoController">Cambiar Estado</a>
 			</tr>
 			</c:forEach>
             

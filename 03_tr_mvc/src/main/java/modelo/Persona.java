@@ -11,6 +11,8 @@ public class Persona implements Serializable{
 	private String nombre;
 	private int id;
 	private String password;
+	private boolean esDirector;
+	
 	public int getId() {
 		return id;
 	}
@@ -19,7 +21,7 @@ public class Persona implements Serializable{
 		this.id = id;
 	}
 
-	private boolean esDirector;
+	
 	
 	public Persona() {}
 

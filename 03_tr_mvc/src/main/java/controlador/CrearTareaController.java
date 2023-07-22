@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Tarea;
 
 
+
 @WebServlet("/CrearTareaController")
 public class CrearTareaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,21 +31,26 @@ public class CrearTareaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.-Obtener datos que me envían en la solicitud
 		Integer cod = Integer.parseInt(request.getParameter("txtCod"));
-		String nombre = request.getParameter("txtNombre");
-		String estado = "Por asignar";
-		
+		String nombre = request.getParameter("txtNombre");		
 		
 		//2.- Llamo al Modelo para obtener datos
 		Tarea nuevaTarea = new Tarea();
 		nuevaTarea.setCodigo(cod);
 		nuevaTarea.setNombre(nombre);
-		nuevaTarea.setEstado(estado);
+		
+		
 		
 		Tarea modeloTarea = new Tarea();
-		modeloTarea.crearTarea(nuevaTarea);
 		
+				
 		//3.- Llamo a la vista
-		response.sendRedirect("TareaController");
+		if(modeloTarea.crearTarea(nuevaTarea) == null) {			
+			request.setAttribute("codigoTarea", cod);
+			request.getRequestDispatcher("jsp/errortarea.jsp").forward(request, response);
+		}else {			
+			response.sendRedirect("TareaController");
+		}
+		
 	}
 
 }

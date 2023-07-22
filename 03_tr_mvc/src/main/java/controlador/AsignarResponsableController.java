@@ -29,6 +29,7 @@ public class AsignarResponsableController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer idTarea = Integer.parseInt(request.getParameter("idtarea"));
 		Tarea tareaModelo = new Tarea();
+		tareaModelo.porHacer();
 		Tarea tarea = tareaModelo.getTareaById(idTarea);
 		//Obtener la lista de posbiles responsables
 		Persona personaModelo = new Persona();

@@ -45,7 +45,7 @@
 				<td scope="row">${tarea.codigo}</td>
 				<td>${tarea.nombre}</td>
 				<td>${tarea.responsable.nombre}</td>
-				<td>${tarea.estado}</td>
+				<td>${tarea.estadoTarea.texto}</td>			
 				<td><a href="AsignarResponsableController?idtarea=${tarea.codigo}">Asignar Responsable</a>
 			</tr>
 			</c:forEach>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 
 public class Tarea implements Serializable {
 
@@ -12,8 +12,8 @@ public class Tarea implements Serializable {
 
 	private Integer codigo;
 	private String nombre;
-	private Persona responsable;
-	private String estado;
+	private Persona responsable;	
+	private EstadoTareaEnum estadoTarea;
 
 	private static List<Tarea> tareas = null;
 
@@ -24,8 +24,8 @@ public class Tarea implements Serializable {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
-		this.responsable = null;
-		this.estado = "Por asignar";
+		this.responsable = null;		
+		this.estadoTarea= EstadoTareaEnum.porAsignar;
 	}
 
 	public void setResponsable(Persona responsable) {
@@ -50,33 +50,30 @@ public class Tarea implements Serializable {
 
 	public Persona getResponsable() {
 		return responsable;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+	}	
 
 	// REGLAS DEL NEGOCIO
 	public void asignarResponsable(Persona persona, int idTarea) {
 		for (Tarea tarea : this.getTareas()) {
 			if(tarea.getCodigo() == idTarea){
 				tarea.setResponsable(persona);
-				tarea.setEstado("POR HACER");
+				tarea.porHacer();
 			}
 		}
 	}
-
-	public void crearTarea(Tarea t) {
-		this.getTareas().add(t);
-	}
-
-	public void completarTarea() {
-		this.estado = "Completado";
-	}
+	
+	public Tarea crearTarea(Tarea t) {
+		Tarea tareaNueva = null;
+		for (Tarea tarea : this.getTareas()) {
+			if(t.getCodigo() != tarea.getCodigo()) {				
+				this.getTareas().add(t);
+				tareaNueva = t;
+				tareaNueva.porAsignar();
+				break;
+			}
+		}
+		return tareaNueva;
+	}	
 
 	public List<Tarea> getTareas() {
 		if (tareas == null) {
@@ -100,8 +97,7 @@ public class Tarea implements Serializable {
 
 	public Tarea getTareaById(Integer idTarea) {
 		Tarea tareaEspecifica = null;	
-		for (Tarea tarea : this.getTareas()) {
-			
+		for (Tarea tarea : this.getTareas()) {			
 				if (tarea.getCodigo() == idTarea) {
 					return tarea;
 				}
@@ -111,4 +107,27 @@ public class Tarea implements Serializable {
 		
 	}
 
+	public EstadoTareaEnum getEstadoTarea() {
+		return estadoTarea;
+	}
+
+	public void setEstadoTarea(EstadoTareaEnum estadoTarea) {
+		this.estadoTarea = estadoTarea;
+	}
+
+	public void porHacer() {
+		//if(this.estadoTarea.equals(EstadoTareaEnum.POR_HACER)) {
+			this.estadoTarea=EstadoTareaEnum.porHacer;
+		//}
+	}
+	
+	public void completar(){
+		this.estadoTarea= EstadoTareaEnum.completado;
+	}
+	
+	public void porAsignar() {
+		this.estadoTarea = EstadoTareaEnum.porAsignar;
+	}
+	
+	
 }

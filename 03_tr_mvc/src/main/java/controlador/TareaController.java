@@ -8,10 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import modelo.Persona;
+
+
 import modelo.Tarea;
+
 
 
 @WebServlet("/TareaController")
@@ -32,7 +33,7 @@ public class TareaController extends HttpServlet {
 		List<Tarea> listaTareas = modeloTarea.getTareas();
 		
 		//3.- Llamo a la vista
-		request.setAttribute("tareas", listaTareas);
+		request.setAttribute("tareas", listaTareas);		
 		request.getRequestDispatcher("jsp/tarea.jsp").forward(request, response);
 	}
 
