@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.EstadoTareaEnum;
 import modelo.Tarea;
 
 
@@ -31,7 +32,9 @@ public class CambiarEstadoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String estadoTarea = request.getParameter("estado");
 		Tarea tareaModelo = new Tarea();
-		//tareaModelo.setEstadoTarea(estadoTarea);
+		//EstadoTareaEnum estadoNuevo= EstadoTareaEnum.completado;
+		
+		//tareaModelo.setEstadoTarea(tareaModelo.getEstadoTarea());
 		System.out.println(estadoTarea);
 		response.sendRedirect("OperadorController");
 		

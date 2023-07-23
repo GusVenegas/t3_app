@@ -128,6 +128,6 @@ public class Tarea implements Serializable {
 	public void porAsignar() {
 		this.estadoTarea = EstadoTareaEnum.porAsignar;
 	}
-	
+
 	
 }

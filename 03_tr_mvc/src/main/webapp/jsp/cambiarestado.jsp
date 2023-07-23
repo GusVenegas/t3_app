@@ -37,7 +37,8 @@
 			
 			<label for="txtNombre">Nombre</label> <br>
 			<input type="text" name="txtNombre" id="txtNombre" disabled value="${tarea.nombre}"/><br>			
-			<label for="cmbEstado">ESTADO</label>			
+			<br>
+			<label for="cmbEstado">Estado</label>			
 			
 			<select id="cmbEstado" name="estado">				
 				<option value="${tarea.estadoTarea}">"${tarea.estadoTarea.texto}"</option>
@@ -47,7 +48,7 @@
 
 
 			<br><br> 
-			<input type="submit" value="insertar"> 
+			<input type="submit" value="Insertar"> 
 		</form>
 
 

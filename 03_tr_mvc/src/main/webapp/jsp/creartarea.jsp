@@ -37,7 +37,7 @@
 			<input type="text" name="txtNombre" id="txtNombre" /><br>			
 			 
 			<br><br> 
-			<input type="submit" value="insertar"> 
+			<input type="submit" value="Insertar"> 
 		</form>
 
 
