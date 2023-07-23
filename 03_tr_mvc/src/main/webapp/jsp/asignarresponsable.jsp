@@ -29,15 +29,16 @@
 	<div><a href="TareaController"> Ir a Menú Principal</a></div>
 		
 
-		<h1>Insertar Tarea</h1>
+		<h1>Asignar Responsable</h1>
 		<form method="POST" action="AsignarResponsableController">
 			<label for="txtCod">Código</label> <br>
 			<input type="hidden" name="txtCod" id="txtCod" value="${tarea.codigo}"/> <br>			
 			
 			
 			<label for="txtNombre">Nombre</label> <br>
-			<input type="text" name="txtNombre" id="txtNombre" disabled value="${tarea.nombre}"/><br>			
-			<label for="cmbResponsable">RESPONSABLE</label>
+			<input type="text" name="txtNombre" id="txtNombre" disabled value="${tarea.nombre}"/><br>
+			<br>			
+			<label for="cmbResponsable">Responsable </label>
 
 
 			<select id="cmbResponsable" name="responsable">
@@ -48,7 +49,7 @@
 
 
 			<br><br> 
-			<input type="submit" value="insertar"> 
+			<input type="submit" value="Insertar"> 
 		</form>
 
 
