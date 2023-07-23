@@ -46,7 +46,7 @@
 				<td>${tarea.nombre}</td>
 				<td>${tarea.responsable.nombre}</td>
 				<td>${tarea.estadoTarea.texto}</td>
-				<td><a href="CambiarEstadoController">Cambiar Estado</a>
+				<td><a href="CambiarEstadoController?idtarea=${tarea.codigo}">Cambiar Estado</a>
 			</tr>
 			</c:forEach>
             

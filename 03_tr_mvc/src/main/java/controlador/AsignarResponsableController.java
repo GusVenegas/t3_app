@@ -48,7 +48,7 @@ public class AsignarResponsableController extends HttpServlet {
 		Persona responsable = modeloPersona.getPersonaById( idPersonaResponsable);
 
 		Tarea tareaModelo = new Tarea();
-		tareaModelo.asignarResponsable( responsable , idTarea);
+		tareaModelo.asignarResponsable(responsable , idTarea);
 		
 		response.sendRedirect("TareaController");
 	}
