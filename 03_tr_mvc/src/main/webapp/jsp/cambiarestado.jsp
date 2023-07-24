@@ -32,23 +32,21 @@
 		<h1>Cambiar Estado Tarea</h1>
 		<form method="POST" action="CambiarEstadoController">
 			<label for="txtCod">Código</label> <br>
-			<input type="hidden" name="txtCod" id="txtCod" value="${tarea.codigo}"/> <br>			
+			<input type="text" name="txtCod" id="txtCod" disabled value="${tarea.codigo}"/> <br>			
 			
 			
 			<label for="txtNombre">Nombre</label> <br>
 			<input type="text" name="txtNombre" id="txtNombre" disabled value="${tarea.nombre}"/><br>			
 			<br>
-			<label for="cmbEstado">Estado</label>			
-			
+			<label for="cmbEstado">Estado</label>
 			<select id="cmbEstado" name="estado">				
 				<option value="${tarea.estadoTarea}">"${tarea.estadoTarea.texto}"</option>
 				<option value="${tarea.estadoTarea}">"${tarea.estadoTarea.texto}"</option>				
-			</select> 
-			
+			</select> 	
+						<br><br> 
+			<input type="submit" value="Insertar"> 		
 
-
-			<br><br> 
-			<input type="submit" value="Insertar"> 
+			<input type="submit" name= "estado" value="Completado"> 
 		</form>
 
 

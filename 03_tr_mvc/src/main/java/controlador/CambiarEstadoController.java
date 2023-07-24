@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,20 +24,31 @@ public class CambiarEstadoController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1.- Obtener datos que me envían de la solicitud	
 		Integer idTarea = Integer.parseInt(request.getParameter("idtarea"));
+		//2.- Llamar al modelo para obtener los datos
 		Tarea tareaModelo = new Tarea();
+		//tareaModelo.completar();
 		Tarea tarea = tareaModelo.getTareaById(idTarea);
+		//3.- Llamo a la vista
 		request.setAttribute("tarea", tarea);
 		request.getRequestDispatcher("jsp/cambiarestado.jsp").forward(request, response);		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1.- Obtener datos que me envían de la solicitud
 		String estadoTarea = request.getParameter("estado");
+		//2.- Llamar al modelo para obtener los datos
 		Tarea tareaModelo = new Tarea();
+		//tareaModelo.completar();
+		
 		//EstadoTareaEnum estadoNuevo= EstadoTareaEnum.completado;
 		
 		//tareaModelo.setEstadoTarea(tareaModelo.getEstadoTarea());
 		System.out.println(estadoTarea);
+		//System.out.println(tareaModelo.getEstadoTarea());
+
+		//3.- Llamo a la vista
 		response.sendRedirect("OperadorController");
 		
 	}
