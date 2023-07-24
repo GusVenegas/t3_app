@@ -32,12 +32,14 @@ public class CambiarEstadoController extends HttpServlet {
 		Tarea tarea = tareaModelo.getTareaById(idTarea);
 		//3.- Llamo a la vista
 		request.setAttribute("tarea", tarea);
+		request.setAttribute("estado", tareaModelo.getEstadoTarea());
 		request.getRequestDispatcher("jsp/cambiarestado.jsp").forward(request, response);		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.- Obtener datos que me envían de la solicitud
-		String estadoTarea = request.getParameter("estado");
+		String estadoTarea = request.getParameter("estadoE");
+		Integer idTarea = Integer.parseInt(request.getParameter("txtCod"));
 		//2.- Llamar al modelo para obtener los datos
 		Tarea tareaModelo = new Tarea();
 		//tareaModelo.completar();
@@ -47,9 +49,16 @@ public class CambiarEstadoController extends HttpServlet {
 		//tareaModelo.setEstadoTarea(tareaModelo.getEstadoTarea());
 		System.out.println(estadoTarea);
 		//System.out.println(tareaModelo.getEstadoTarea());
+		
+		if(estadoTarea.equals("Completado")) {			
+			tareaModelo.completar(idTarea);					
+		}else {
+			tareaModelo.cambiaraHacer(idTarea);						
+		}
+		response.sendRedirect("OperadorController");
 
 		//3.- Llamo a la vista
-		response.sendRedirect("OperadorController");
+		
 		
 	}
 

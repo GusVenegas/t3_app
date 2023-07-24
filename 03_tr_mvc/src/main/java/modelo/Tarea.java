@@ -51,6 +51,14 @@ public class Tarea implements Serializable {
 	public Persona getResponsable() {
 		return responsable;
 	}	
+	
+	public EstadoTareaEnum getEstadoTarea() {
+		return estadoTarea;
+	}
+
+	public void setEstadoTarea(EstadoTareaEnum estadoTarea) {
+		this.estadoTarea = estadoTarea;
+	}
 
 	// REGLAS DEL NEGOCIO
 	public void asignarResponsable(Persona persona, int idTarea) {
@@ -105,28 +113,31 @@ public class Tarea implements Serializable {
 		}
 		return tareaEspecifica;
 		
-	}
+	}	
 
-	public EstadoTareaEnum getEstadoTarea() {
-		return estadoTarea;
-	}
-
-	public void setEstadoTarea(EstadoTareaEnum estadoTarea) {
-		this.estadoTarea = estadoTarea;
-	}
-
-	public void porHacer() {
-		//if(this.estadoTarea.equals(EstadoTareaEnum.POR_HACER)) {
-			this.estadoTarea=EstadoTareaEnum.porHacer;
-		//}
+	public void porHacer() {		
+		this.estadoTarea= EstadoTareaEnum.porHacer;		
 	}
 	
-	public void completar(){
-		this.estadoTarea= EstadoTareaEnum.completado;
+	public void completar(int idTarea){
+		for (Tarea tarea : this.getTareas()) {
+			if(tarea.getCodigo() == idTarea){				
+				tarea.setEstadoTarea(EstadoTareaEnum.completado);
+			}
+		}
+		
 	}
 	
 	public void porAsignar() {
 		this.estadoTarea = EstadoTareaEnum.porAsignar;
+	}
+	
+	public void cambiaraHacer(int idTarea) {
+		for (Tarea tarea : this.getTareas()) {
+			if(tarea.getCodigo() == idTarea){				
+				tarea.setEstadoTarea(EstadoTareaEnum.porHacer);
+			}
+		}
 	}
 
 	

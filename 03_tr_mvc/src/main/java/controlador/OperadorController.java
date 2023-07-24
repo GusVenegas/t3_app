@@ -26,8 +26,7 @@ public class OperadorController extends HttpServlet {
 		// 1.- Obtener datos que me envían de la solicitud
 		// 2.- Llamar al modelo para obtener los datos
 		Tarea modeloTarea = new Tarea();
-		List<Tarea> listaTareas = modeloTarea.getTareasByPersona((Persona)request.getSession().getAttribute("usuarioLogeado"));
-
+		List<Tarea> listaTareas = modeloTarea.getTareasByPersona((Persona)request.getSession().getAttribute("usuarioLogeado"));		
 		// 3.- Llamo a la vista
 		request.setAttribute("tareas", listaTareas);
 		request.getRequestDispatcher("jsp/tareaOperador.jsp").forward(request, response);

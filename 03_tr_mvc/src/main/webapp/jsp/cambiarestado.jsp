@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,27 +27,32 @@
 
 
 	<div class="wrapper">
-	<div><a href="TareaController"> Ir a Menú Principal</a></div>
+	<div><a href="OperadorController"> Ir a Menú Principal</a></div>
 		
 
 		<h1>Cambiar Estado Tarea</h1>
 		<form method="POST" action="CambiarEstadoController">
 			<label for="txtCod">Código</label> <br>
-			<input type="text" name="txtCod" id="txtCod" disabled value="${tarea.codigo}"/> <br>			
+			<input type="text" name="txtCod" id="txtCod" value="${tarea.codigo}"/> <br>			
 			
 			
 			<label for="txtNombre">Nombre</label> <br>
-			<input type="text" name="txtNombre" id="txtNombre" disabled value="${tarea.nombre}"/><br>			
+			<input type="text" name="txtNombre" id="txtNombre" disabled value="${tarea.nombre}"/>			
 			<br>
-			<label for="cmbEstado">Estado</label>
-			<select id="cmbEstado" name="estado">				
-				<option value="${tarea.estadoTarea}">"${tarea.estadoTarea.texto}"</option>
-				<option value="${tarea.estadoTarea}">"${tarea.estadoTarea.texto}"</option>				
-			</select> 	
-						<br><br> 
-			<input type="submit" value="Insertar"> 		
-
-			<input type="submit" name= "estado" value="Completado"> 
+			<label for="txtEstado">Estado</label> <br>
+			<input type="text" name="txtEstado" id="txtEstado" disabled value="${tarea.estadoTarea.texto}"/><br>			
+			<br>
+			
+			
+			
+			
+			<c:if test="${tarea.estadoTarea.texto eq 'Por hacer'}">
+				<input type="submit" name= "estadoE" value="Completado"> 
+			</c:if>		
+			<c:if test="${tarea.estadoTarea.texto eq 'Completado'}">
+				<input type="submit" name= "estadoE" value="Por Hacer"> 
+			</c:if>	
+			
 		</form>
 
 
